@@ -28,7 +28,7 @@ Manifesto executes this default behavior for the most common request parameters:
 
    https://example.org/index.php?&category=<script>foo</script>&id=123'
    
-their reqeuest will be immediately rejected as a hacking attempt.
+their request will be immediately rejected as a hacking attempt.
 
 Cleantext options
 -----------------
