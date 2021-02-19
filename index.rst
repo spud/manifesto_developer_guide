@@ -12,7 +12,6 @@ The following pages are for advanced users, and explain some of the inner workin
    new_theme
    template_hierarchy
    flow
-   quick_reference
    overview
    modularity
    filesystem
@@ -26,3 +25,4 @@ The following pages are for advanced users, and explain some of the inner workin
    events
    debugging
    sanitizing_text
+   quick_reference
