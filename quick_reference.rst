@@ -33,7 +33,6 @@ Dates
 Manifesto uses its own internal Date object for convenience, and automatically converts database date and datetime formats to Manifesto ``Date`` objects when they are retrieved from the database. From that point, you simply need to figure out what format you want to be used in the output::
 
 $d = Date::now();
-
 echo $d->get_date($format=null);
 
 **date_short**: 01/30/12 or 30/01/12
