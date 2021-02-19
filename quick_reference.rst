@@ -5,9 +5,9 @@ Quick Reference
 Images
 ======
 
-Media files in Manifesto are, for the most part, raw data structures that you will not usually interact with. 
+Media files in Manifesto are uploaded to a central repository, and can have default metadata associated with them (format, output method, dimensions, caption). When using media on the site, however, we rarely embed a reference to the default Media object.
 
-In most cases, you will be using a MediaInstance object, which is an instance of using a particular Media object in a particular context. A MediaInstance object may have a different caption, or different output dimensions or alignment than the base Media object it represents.
+Instead, in most cases, you will be using a **MediaInstance object**, which is an *instance* of using a particular Media object in a particular context. A MediaInstance object may have a different caption, or different output dimensions or alignment than the base Media object it represents, so you can reuse the same media throughout your site, but with different captions or sizes.
 
 Fully-instantiated Manifesto objects that support images all have an ``media_array`` property (each element is a full MediaInstance object, and the array is iterable). You may also retrieve the associated image marked as the "icon" of your content with the simple call::
 
@@ -37,23 +37,42 @@ $d = Date::now();
 echo $d->get_date($format=null);
 
 **date_short**: 01/30/12 or 30/01/12
+
 **date_long**: January 30, 2012 or 30 January 2012
+
 **date_brief**: 01/30 or 30/01
+
 **extended**: Sunday, 30 January 2012
+
 **nicedate**: Jan 30, 2012 14:45 or 30 Jan, 2012 14:45
+
 **datetime**: 30 Jan 2012 2:45:13 PM
+
 **datetime_utc**: 30 Jan 2012 14:45:13 UTC
+
 **datetime_short**: 1/30 14:45 EST or 30/1 14:45 EST
+
 **time_short**: 2:45 PM or 14:45
+
 **dow**: 0-6 (Sunday-Saturday)
+
 **monthname**: January
+
 **time**: 2:45:36 PM or 14:45:36
+
 **timewithzone**: 14:45:36 EST
+
 **week**: 13 (Week of year)
+
 **day_short**: Sat
+
 **day_long**: Saturday
+
 **ical_date**: 20120130
+
 **ical_datetime**: 20120130T144536
+
 **[strftime_format_string]**: Any valid strftime() format string
+
 **date**: return default date format (30 Jan 2012)
 
