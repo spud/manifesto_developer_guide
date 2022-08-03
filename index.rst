@@ -22,6 +22,7 @@ The following pages are for advanced users, and explain some of the inner workin
    controllers
    queries
    about_hydration
+   repeating_fields
    events
    debugging
    sanitizing_text

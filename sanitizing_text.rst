@@ -91,7 +91,7 @@ A comprehensive list of available options is below.
 | **array**              | Checks for match against provided 3rd parameter***  |
 +------------------------+-----------------------------------------------------+
 
-**\*** "Allow full HTML" *always* removed any `style` or `head` blocks, and removes HTML comments and `script` tags based on the global "Permissive content" settings.
+**\*** "Allow full HTML" *always* removes any `style` or `head` blocks, and removes HTML comments and `script` tags based on the global "Permissive content" settings.
 
 **\*\*** "X-HTML" allows `address, a, b, strong, blockquote, i, em, span, img, u, ol, ul, li, br, p, h1-6`
 
