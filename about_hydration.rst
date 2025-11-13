@@ -10,28 +10,28 @@ At a basic level we can start with a plain News object number 34::
 
 $oracle = new NewsOracle();
 $news_object = $oracle->get_unique(34);
-// SELECT news.* FROM news where objectid = 34;
+ // SELECT news.* FROM news where objectid = 34;
 
 That's one database query to retrieve the News data.
 
 Then, to get the categories that it falls under, we might do something like::
 
 $news_object->get_categories();
-// SELECT hash_categories.* FROM hash_categories WHERE ref_class = "News" and ref_id = 34
+ // SELECT hash_categories.* FROM hash_categories WHERE ref_class = "News" and ref_id = 34
 
 And that would execute another database query to retrieve a list of categories.
 
 Then, to find associated media, we might do something like::
 
 $news_object->get_media_array();
-// SELECT hash_media.* FROM hash_media WHERE ref_class = "News" and ref_id = 34
+ // SELECT hash_media.* FROM hash_media WHERE ref_class = "News" and ref_id = 34
 
 And that would execute another database query to retrieve a list of associated media.
 
 We might also need to check access permissions or something too::
 
 $new_object->get_permissions();
-// SELECT workflow_access.* FROM workflow_access WHERE ref_class = "News" and ref_id = 34
+ // SELECT workflow_access.* FROM workflow_access WHERE ref_class = "News" and ref_id = 34
 
 You can see that, as we add more complex properties and relationships, it is easy to create the need for numerous database queries in order to fully form the content object we need.
 
