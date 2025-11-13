@@ -31,11 +31,11 @@ The segment "media" is the trigger, and we would create a route map element that
 
 And after being processed, we now have ::
 
-	$G->handler = 'module';
-	$G->req_module = 'media';
-	$G->category->shortname = 'landscapes';
-	$G->req_function = 'display';
-	$G->req_id = 'ocean-view-with-sunset';
+	$request->handler = 'module';
+	$request->module = 'media';
+	$request->category->shortname = 'landscapes';
+	$request->function = 'display';
+	$request->id = 'ocean-view-with-sunset';
 
 With that, the ``index.php`` page now has the information it needs to route the page to the appropriate module controller.
 
@@ -53,12 +53,12 @@ If you want to create systematic shortcut URLs (rather than one-off custom URLs)
 
 You would like a shorter solution that works with any category, so you create a route like::
 
-	$routes['s'] = array(
-		'handler'=>'module',
-		'module'=>'staff',
-		'function'=>'listing',
-		'category'=>seg(0)
-	);
+	if ($router->getTrigger() === 's') {
+		$router->req['handler']	= 'module';
+		$router->req['module'] = 'staff';
+		$router->req['function'] = 'listing';
+		$router->req['category'] = $seg(0);
+	}
 
 ...and that will allow you to use the much shorter ::
 
@@ -84,14 +84,14 @@ but you would rather have a cleaner look, like ::
 
 You could modify the "URL Path" property of the Module definition, but you would also have to create a custom route that would be able to parse these new URLs. It would look something like this::
 
-	$routes['store'] = array(
-		'handler'=>'module',
-		'module'=>'shopping_cart',
-		'function'=>seg(0),
-		'id'=>seg(1),
-		'xparam1'=>seg(2),
-		'xparam2'=>seg(3),
-	);
+	if ($router->getTrigger() === 'store') {
+		$router->req['handler']	= 'module';
+		$router->req['module'] = 'shopping_cart';
+		$router->req['function'] = seg(0);
+		$router->req['id'] = $seg(1);
+		$router->req['xparam1'] = $seg(2);
+		$router->req['xparam2'] = $seg(3);
+	}
 
 By using a relatively generic route definition like this, it ensures that all of the functionality that worked with ::
 
@@ -107,10 +107,10 @@ The Category
 ============
 For the sake of convenience, because it is frequently used as a content filtering tool, Manifesto is set up to store a single category as the "current" category for the page, so it is easily included in database queries.
 
-If `$G->route['category']` is defined (using a valid category shortname), or if $_REQUEST['category'] is a valid category shortname, Manifesto will lookup the corresponding category and assign it to $G->category. At that point, you can easily add a category-based filer to your database queries by simply calling::
+If `$request->get('category')` is defined (using a valid category shortname), or if $_REQUEST['category'] is a valid category shortname, Manifesto will lookup the corresponding category and assign it to $request->category. At that point, you can easily add a category-based filer to your database queries by simply calling::
 
-   $oracle->filter_by_category($G->category);
+   $oracle->filter_by_category($request->get('category'));
 
 The great advantage here, of course, is that our new query filter understands  category hierarchy, so we filter not only on the current category, but also any of its descendent categories as well.
 
-The default $G->category->shortname is "all," so you may use that to confirm whether or not a non-default category has been set.
+The default $request->get('category')->shortname is "all," so you may use that to confirm whether or not a non-default category has been set.

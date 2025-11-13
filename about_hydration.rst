@@ -48,7 +48,9 @@ So, a more complex query like::
 
 SELECT news.*,hash_categories.*,hash_media.*,workflow_access.* FROM news
    LEFT JOIN hash_categories ON (hash_categories.ref_id = news.objectid AND hash_categories.ref_class = "News")
+   
    LEFT JOIN hash_media ON (hash_media.ref_id = news.objectid AND hash_media.ref_class = "News")
+   
    LEFT JOIN workflow_access ON workflow_access.ref_id = news.objectid AND workflow_access.ref_class = "News")
 WHERE news.objectid = 34
 
@@ -64,21 +66,21 @@ Manifesto understands this, though, and knows how to loop through the data resul
 
 So when we get records back like (roughly)::
 
-News item 34, category: Science
-News item 34, category: Astronomy
-New items 34, category: Europe
-New items 34, media: Picture of Square Kilometre Array
-New items 34, media: Picture of Steven Hawking
-New items 34, access: Publisher
+-News item 34, category: Science
+-News item 34, category: Astronomy
+-News item 34, category: Europe
+-News item 34, media: Picture of Square Kilometre Array
+-News item 34, media: Picture of Steven Hawking
+-News item 34, access: Publisher
 
 Manifesto understands this, and converts it to a single News object, like so::
 
 News item 34 {
-	headline: Deep Space is Neat!
-	body: blah blah blah space blah quasar, blah
-    categories: [Science, Astronomy, Europe]
-    media_array: [Picture of Square Kilometre Array, Picture of Steven Hawking]
-    access: Publisher
+	-headline: Deep Space is Neat!
+	-body: blah blah blah space blah quasar, blah
+    -categories: [Science, Astronomy, Europe]
+    -media_array: [Picture of Square Kilometre Array, Picture of Steven Hawking]
+    -access: Publisher
 }
 
 
@@ -93,7 +95,9 @@ $oracle = new NewsOracle();
 $oracle->get_record();
 $results = $oracle->object_array;
 foreach($result as $news_object) {
+	
 	$news_object->get->categories();
+	
 	echo $news_object->title.': '.$news_object->category_list;
 }
 
